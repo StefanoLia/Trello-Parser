@@ -41,8 +41,9 @@ for idx, card in enumerate(cards):
     card_members = card['idMembers']
     people_string = ""
     for member_id in card_members:
-        people_string += people_dict[member_id]+"\n"
+        people_string += people_dict[member_id]+", "
 
+    people_string = people_string[:-2]
     desc = card['desc']
 
     time_spent_match = re.search('\|\w+: ([^)]+)\|', desc)
