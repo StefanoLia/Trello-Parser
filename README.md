@@ -20,6 +20,9 @@ No matters what text you write before the double dot, it parses the text after t
 
 2) Put the file in the same directory of the script *parser.py*
 
-3) Run the comand: python parser.py
+3) Run the comand:
+
+- python parser.py --all (take all the trello cards you have in your board)
+- python parser.py (take all the cards in your "In progress" list. You must have it)
 
 4) A file called "trello_activities.csv" will be generated at the end of the program
