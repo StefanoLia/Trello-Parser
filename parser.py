@@ -70,7 +70,7 @@ for idx, card in enumerate(cards):
     people_string = people_string[:-2]
     desc = card['desc']
 
-    time_spent_match = re.search('\|\w+: ([^)]+)\|', desc)
+    time_spent_match = re.search('\|.*:\s*(.*)\|', desc)
     if time_spent_match is not None:
         string_to_remove = time_spent_match.group(0)
         time_spent = time_spent_match.group(1)
@@ -86,11 +86,11 @@ for idx, card in enumerate(cards):
         df.loc[idx] = pd.Series({'Name': card['name'], 'Member': people_string, 'Description': desc, 'Time spent': time_spent, 
         'Status': status,
         'Due date': datetime.strptime(card['due'], "%Y-%m-%dT%H:%M:%S.%fZ") if card['due'] is not None else None})
-    elif status == 'In progress':
+    elif status == 'In progress' or status == 'Done':
         # Time format: 2020-01-22T11:00:00.000Z
         df.loc[idx] = pd.Series({'Name': card['name'], 'Member': people_string, 'Description': desc, 'Time spent': time_spent, 
         'Status': status,
         'Due date': datetime.strptime(card['due'], "%Y-%m-%dT%H:%M:%S.%fZ") if card['due'] is not None else None})
 
 print(df)
-df.to_csv(end_dir+"trello_activities_fastweb.csv", index=False, encoding='utf-8-sig')
+df.to_csv(end_dir+"trello_activities.csv", index=False, encoding='utf-8-sig')
