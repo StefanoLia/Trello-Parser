@@ -86,11 +86,11 @@ for idx, card in enumerate(cards):
         df.loc[idx] = pd.Series({'Name': card['name'], 'Member': people_string, 'Description': desc, 'Time spent': time_spent, 
         'Status': status,
         'Due date': datetime.strptime(card['due'], "%Y-%m-%dT%H:%M:%S.%fZ") if card['due'] is not None else None})
-    elif status == 'In progress' or status == 'Done':
+    elif status == 'In progress' or status == 'Done' or status == 'Ricorrenti' or status == 'Pending':
         # Time format: 2020-01-22T11:00:00.000Z
         df.loc[idx] = pd.Series({'Name': card['name'], 'Member': people_string, 'Description': desc, 'Time spent': time_spent, 
         'Status': status,
         'Due date': datetime.strptime(card['due'], "%Y-%m-%dT%H:%M:%S.%fZ") if card['due'] is not None else None})
 
 print(df)
-df.to_csv(end_dir+"trello_activities.csv", index=False, encoding='utf-8-sig')
+df.to_csv(end_dir+"trello_activities.csv", index=False, encoding='utf-8-sig', sep=";")
